@@ -1,16 +1,18 @@
+from bson import ObjectId
 from pydantic import EmailStr
 from pydantic.class_validators import List
+from . import membership_collection
 
 from app.models.models import Users, Community
 
 
 def insert_community(_name: str, members: List[EmailStr]):
+    community = Community(name=_name).save()
     members_ref = Users.objects(__raw__={'email': {'$in': members}})
-    members_list = []
     for member in members_ref:
-        members_list.append(str(member.id))
-    community = Community(name=_name, members=members_list).save()
-    for member in members_ref[1:]:
-        member.to_join.append(str(community.id))
-        member.save()
+        membership_collection.add_membership(str(community.id), str(member.id))
     return community
+
+
+def get_community_name(community_id: str):
+    return Community.objects(id=ObjectId(community_id)).get().name

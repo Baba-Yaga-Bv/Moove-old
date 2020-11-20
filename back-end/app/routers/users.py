@@ -2,10 +2,11 @@ from fastapi import APIRouter, Depends
 
 from app.models.models import *
 from app.database import users_collection
+from app.database import membership_collection
+from app.database import communities_collection
 from app.database import token
 
 import json
-
 
 router = APIRouter()
 
@@ -47,3 +48,16 @@ async def login_user(user=Depends(users_collection.login_user)):
 @router.get("/me")
 async def get_current_user(user: Users = Depends(users_collection.get_user_by_id)):
     return prepare_for_return(user)
+
+
+@router.get("/me/communities")
+async def get_current_user(user: Users = Depends(users_collection.get_user_by_id)):
+    communities = membership_collection.get_communities(str(user.id))
+    response = UserCommunities(id=str(user.id))
+    for community in communities:
+        response.communities.append(UserCommunities.
+                                    CommunityBase(id=community.community_id,
+                                                  name=communities_collection.get_community_name(
+                                                      community.community_id),
+                                                  is_joined=community.is_joined))
+    return response

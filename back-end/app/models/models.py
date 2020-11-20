@@ -1,12 +1,11 @@
 from typing import List
 
-from mongoengine import Document, EmailField, StringField, ListField, ReferenceField
+from mongoengine import Document, EmailField, StringField, BooleanField
 from pydantic import BaseModel, EmailStr
 
 
 class Community(Document):
     name = StringField(required=True)
-    members = ListField(StringField())
 
 
 class UserLogin(BaseModel):
@@ -29,8 +28,6 @@ class Users(Document):
     password = StringField(required=True)
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
-    communities = ListField(StringField(), default=[])
-    to_join = ListField(StringField(), default=[])
 
 
 class CommunityCreate(BaseModel):
@@ -47,3 +44,19 @@ class CommunityCreateResponse(BaseModel):
 
     members: List[BaseUser] = []
 
+
+class UserCommunities(BaseModel):
+    id: str
+
+    class CommunityBase(BaseModel):
+        id: str
+        name: str
+        is_joined: bool
+
+    communities: List[CommunityBase] = []
+
+
+class Membership(Document):
+    user_id = StringField(required=True)
+    community_id = StringField(required=True)
+    is_joined = BooleanField(required=True)
