@@ -2,50 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:moove/config.dart';
 
 class HomeBody extends StatelessWidget {
-  String get__main_stats_text() {
-    int current_progress = 15;
-    int total_progress = 30;
+  String getMainStatsText() {
+    int currentProgress = 15;
+    int totalProgress = 30;
 
-    return current_progress.toString() + "/" + total_progress.toString();
+    return currentProgress.toString() + "/" + totalProgress.toString();
+  }
+
+  String getStepsToday() {
+    int stepsToday = 1000;
+    return "Steps today: " + stepsToday.toString();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    //The values in the list come from here
+    List toDisplay = [
+      getStepsToday(),
+      "Hello there ",
+      "Hello there ",
+      "Hello there "
+    ];
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-
         //Top containter
         Container(
+            height: screenSize.height * 0.3,
+            decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                      color: Theme.of(context).shadowColor, blurRadius: 30)
+                ],
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(35),
+                    bottomRight: Radius.circular(35))),
 
-          height: screenSize.height * 0.3,
-          decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              boxShadow: [BoxShadow(color: Theme.of(context).shadowColor,
-                                    blurRadius: 30)],
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35))),
+            //Progress metric
 
-          //Progress metric
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-
-
-
-                  //Progess text
-                  Row(
-
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                //Progess text
+                Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         "Challenge name",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: textColor,
                           fontSize: 48,
                         ),
                       ),
@@ -70,17 +79,47 @@ class HomeBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      get__main_stats_text(),
+                      getMainStatsText(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: textColor,
                         fontSize: 56,
                       ),
                     ),
                   ],
                 )
               ],
-            ))
+            )),
+
+        //Expanded(child:
+        Expanded(
+            child: ListView.separated(
+                padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                itemCount: toDisplay.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: screenSize.height*0.2,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(35))
+                    ),
+                    child: Center(
+                        child: Text(
+                      'Entry ${toDisplay[index]}',
+                      style: TextStyle(
+                          color: textColor,
+                          fontSize: textFontSize,
+                          fontWeight: FontWeight.bold),
+                    )),
+                  );
+                },
+              separatorBuilder: (BuildContext context, int index) => const Divider(),
+
+                )
+
+
+        ),
+
       ],
     );
   }
