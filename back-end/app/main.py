@@ -1,8 +1,10 @@
 from fastapi import FastAPI
+from mongoengine import *
 
 from .routers import communities, users
 
 app = FastAPI()
+connect('moove_database')
 
 
 @app.get("/")
