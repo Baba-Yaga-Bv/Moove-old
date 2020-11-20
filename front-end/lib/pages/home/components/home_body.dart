@@ -12,6 +12,7 @@ class HomeBody extends StatelessWidget {
   }
 
 
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -29,18 +30,35 @@ class HomeBody extends StatelessWidget {
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
 
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                          Text("Challenge name",style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                              fontSize: 32,
 
-                  //Progess circle
+                          ),
+
+                          ),
+
+                  ]),
+
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                        CircularProgressIndicator(
-                        backgroundColor: Colors.grey,
-                        strokeWidth: 10,
-                        valueColor: AlwaysStoppedAnimation(Colors.red),
-                        value: 0.5),]
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                            child: CircularProgressIndicator(
+                                backgroundColor: Colors.grey,
+                                strokeWidth: 10,
+                                valueColor: AlwaysStoppedAnimation(Colors.red),
+                                value: 0.5),
+                          )
+                        ]
                   ),
 
 
