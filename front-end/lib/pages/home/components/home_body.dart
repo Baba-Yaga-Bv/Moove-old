@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:moove/config.dart';
 
 class HomeBody extends StatelessWidget {
-  String get__main_stats_text() {
-    int current_progress = 15;
-    int total_progress = 30;
-
-    return current_progress.toString() + "/" + total_progress.toString();
+  String getMainStatsText() {
+    int currentProgress = 15;
+    int totalProgress = 30;
+    return currentProgress.toString() + "/" + totalProgress.toString();
   }
 
   @override
@@ -14,73 +13,67 @@ class HomeBody extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-
-        //Top containter
+        //Top container
         Container(
-
           height: screenSize.height * 0.3,
           decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              boxShadow: [BoxShadow(color: Theme.of(context).shadowColor,
-                                    blurRadius: 30)],
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35))),
-
-          //Progress metric
-
+            color: Theme.of(context).primaryColor,
+            boxShadow: [BoxShadow(color: Theme.of(context).shadowColor, blurRadius: 30)],
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(35),
+                bottomRight: Radius.circular(35)
+            )
+          ),
+          // Progress metric
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-
-
-
-                  //Progess text
-                  Row(
-
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "Challenge name",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontSize: 48,
-                        ),
-                      ),
-                    ]),
-
-                //Progress circle
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
-                        child: CircularProgressIndicator(
-                            backgroundColor: Colors.grey,
-                            strokeWidth: 10,
-                            valueColor: AlwaysStoppedAnimation(Colors.red),
-                            value: 0.5),
-                      )
-                    ]),
-
-                //Progess text
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      get__main_stats_text(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 56,
-                      ),
+              //Progress text
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    "Challenge name",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 48,
                     ),
-                  ],
-                )
-              ],
-            ))
+                  ),
+                ]
+              ),
+              // Progress circle
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 30, 0, 30),
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.grey,
+                      strokeWidth: 10,
+                      valueColor: AlwaysStoppedAnimation(Colors.red),
+                      value: 0.5
+                    ),
+                  )
+                ]),
+              // Progress stats text
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    getMainStatsText(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 56,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          )
+        )
       ],
     );
   }

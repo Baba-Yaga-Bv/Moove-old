@@ -10,12 +10,15 @@ class CommunitiesBodyState extends State<CommunitiesBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Top blank space
         Container(
           height: 50,
         ),
+        // Top row
         Row(
           children: [
             Spacer(),
+            // Back to home button
             IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
@@ -24,9 +27,6 @@ class CommunitiesBodyState extends State<CommunitiesBody> {
               iconSize: 40,
             )
           ],
-        ),
-        Column(
-
         )
       ],
     );
