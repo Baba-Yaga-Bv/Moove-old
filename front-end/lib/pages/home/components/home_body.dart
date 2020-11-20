@@ -1,25 +1,68 @@
+
 import 'package:flutter/material.dart';
 
 class HomeBody extends StatelessWidget {
+
+  String get__main_stats_text()
+  {
+    int current_progress=15;
+    int total_progress=30;
+
+    return current_progress.toString()+"/"+total_progress.toString();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
         Container(
-            height: screenSize.height * 0.3,
-            decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35))),
-            child: CircularProgressIndicator(
-              backgroundColor: Colors.grey,
-              value: 50,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
-              semanticsLabel: "Challenge progress",
-              semanticsValue: "Semantics Value",
-            ))
+          height: screenSize.height * 0.3,
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(35),
+                  bottomRight: Radius.circular(35))),
+
+          //Progress metric
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+
+
+                  //Progess circle
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                        CircularProgressIndicator(
+                        backgroundColor: Colors.grey,
+                        strokeWidth: 10,
+                        valueColor: AlwaysStoppedAnimation(Colors.red),
+                        value: 0.5),]
+                  ),
+
+
+                  //Progess text
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(get__main_stats_text(),style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 56,
+                          ),),
+
+                    ],
+                  )
+
+
+
+
+            ],
+          ),
+        )
       ],
     );
   }
