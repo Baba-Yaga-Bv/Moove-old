@@ -1,10 +1,10 @@
+from bson import ObjectId
 from starlette import status
 
-from . import connection
 from fastapi import HTTPException, Depends
-from app.models.users_models import *
 from passlib.context import CryptContext
 from app.database import token
+from ..models.models import UserLogin, UserProfile, UserRegisterCall, Users
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -23,10 +23,7 @@ def login_user(user: UserLogin):
     if not pwd_context.verify(user.password, user_result.password):
         raise HTTPException(status_code=400, detail="Invalid email or password")
 
-    return (UserProfile(email=user_result.email,
-                        first_name=user_result.first_name,
-                        last_name=user_result.last_name),
-            user_result.id)
+    return user_result
 
 
 def insert_user(user: UserRegisterCall):
