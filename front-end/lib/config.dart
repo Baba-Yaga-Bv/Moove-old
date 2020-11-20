@@ -16,8 +16,5 @@ ThemeData darkTheme = ThemeData(
   accentColor: primaryColor
 );
 ThemeController themeController = ThemeController();
-<<<<<<< Updated upstream
-=======
 
 Radius defaultRoundedCorner = Radius.circular(40);
->>>>>>> Stashed changes
