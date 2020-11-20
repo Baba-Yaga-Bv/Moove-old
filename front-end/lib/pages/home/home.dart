@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moove/config.dart';
 import 'package:moove/pages/communities/communities.dart';
+import 'package:moove/pages/profile/profile.dart';
 
 import 'components/home_body.dart';
 
@@ -45,7 +46,14 @@ class HomePageState extends State<HomePage> {
       actions: [
         IconButton(
           icon: Icon(Icons.person),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProfilePage()
+              )
+            );
+          },
           iconSize: 40,
         )
       ]
