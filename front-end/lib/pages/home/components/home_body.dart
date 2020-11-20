@@ -16,6 +16,12 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List toDisplay = [
+      getStepsToday(),
+      "Hello there ",
+      "Hello there ",
+      "Hello there "
+    ];
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -83,30 +89,54 @@ class HomeBody extends StatelessWidget {
               ],
             )),
 
-        //Steps today
-        Padding(
-          padding: EdgeInsets.fromLTRB(0, defaultPadding, 0, defaultPadding),
-          child: Container(
-              height: screenSize.height * 0.2,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.all(Radius.circular(35))),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-                    child: Text(
-                      getStepsToday(),
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: textFontSize,
-                        fontWeight: FontWeight.bold,
-                      ),
+        //Expanded(child:
+        Expanded(
+            child: ListView.separated(
+                padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
+                itemCount: toDisplay.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: screenSize.height*0.2,
+                    decoration: BoxDecoration(
+                      color: primaryColor,
+                      borderRadius: BorderRadius.all(Radius.circular(35))
                     ),
-                  )
-                ],
-              )),
+                    child: Center(
+                        child: Text(
+                      'Entry ${toDisplay[index]}',
+                      style: TextStyle(
+                          color: textColor,
+                          fontSize: textFontSize,
+                          fontWeight: FontWeight.bold),
+                    )),
+                  );
+                },
+              separatorBuilder: (BuildContext context, int index) => const Divider(),
+
+                )
+
+
         ),
+        // Container(
+        //     height: screenSize.height * 0.2,
+        //     decoration: BoxDecoration(
+        //         color: Theme.of(context).primaryColor,
+        //         borderRadius: BorderRadius.all(Radius.circular(35))),
+        //     child: Row(
+        //       children: <Widget>[
+        //         Padding(
+        //           padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+        //           child: Text(
+        //             getStepsToday(),
+        //             style: TextStyle(
+        //               color: textColor,
+        //               fontSize: textFontSize,
+        //               fontWeight: FontWeight.bold,
+        //             ),
+        //           ),
+        //         )
+        //       ],
+        //     )),
       ],
     );
   }
