@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moove/config.dart';
 
 class HomeBody extends StatelessWidget {
   @override
@@ -7,13 +8,23 @@ class HomeBody extends StatelessWidget {
     return Column(
       children: [
         Container(
-        height: screenSize.height * 0.3,
+          height: screenSize.height * 0.3,
           decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35)
-              )
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.only(
+              bottomLeft: defaultRoundedCorner,
+              bottomRight: defaultRoundedCorner
+            )
+          ),
+        ),
+        Container(
+          height: 40
+        ),
+        Container(
+          height: screenSize.height * 0.2,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.all(defaultRoundedCorner)
           ),
         )
       ],

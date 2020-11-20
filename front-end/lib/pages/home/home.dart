@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moove/config.dart';
+import 'package:moove/pages/communities/communities.dart';
 
 import 'components/home_body.dart';
 
@@ -28,7 +29,14 @@ class HomePageState extends State<HomePage> {
       elevation: 0,
       leading: IconButton(
         icon: Icon(Icons.menu_open),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CommunitiesPage()
+            )
+          );
+        },
         iconSize: 40,
       ),
       actions: [
