@@ -16,6 +16,8 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //The values in the list come from here
     List toDisplay = [
       getStepsToday(),
       "Hello there ",
@@ -117,26 +119,7 @@ class HomeBody extends StatelessWidget {
 
 
         ),
-        // Container(
-        //     height: screenSize.height * 0.2,
-        //     decoration: BoxDecoration(
-        //         color: Theme.of(context).primaryColor,
-        //         borderRadius: BorderRadius.all(Radius.circular(35))),
-        //     child: Row(
-        //       children: <Widget>[
-        //         Padding(
-        //           padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
-        //           child: Text(
-        //             getStepsToday(),
-        //             style: TextStyle(
-        //               color: textColor,
-        //               fontSize: textFontSize,
-        //               fontWeight: FontWeight.bold,
-        //             ),
-        //           ),
-        //         )
-        //       ],
-        //     )),
+
       ],
     );
   }
