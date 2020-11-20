@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:moove/config.dart';
 
 class HomeBody extends StatelessWidget {
-  String get__main_stats_text() {
-    int current_progress = 15;
-    int total_progress = 30;
+  String getMainStatsText() {
+    int currentProgress = 15;
+    int totalProgress = 30;
 
-    return current_progress.toString() + "/" + total_progress.toString();
+    return currentProgress.toString() + "/" + totalProgress.toString();
+  }
+
+  String getStepsToday() {
+    int stepsToday = 1000;
+    return "Steps today: " + stepsToday.toString();
   }
 
   @override
@@ -14,38 +19,34 @@ class HomeBody extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-
         //Top containter
         Container(
+            height: screenSize.height * 0.3,
+            decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                      color: Theme.of(context).shadowColor, blurRadius: 30)
+                ],
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(35),
+                    bottomRight: Radius.circular(35))),
 
-          height: screenSize.height * 0.3,
-          decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              boxShadow: [BoxShadow(color: Theme.of(context).shadowColor,
-                                    blurRadius: 30)],
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35))),
+            //Progress metric
 
-          //Progress metric
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-
-
-
-                  //Progess text
-                  Row(
-
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                //Progess text
+                Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
                         "Challenge name",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: textColor,
                           fontSize: 48,
                         ),
                       ),
@@ -70,17 +71,42 @@ class HomeBody extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      get__main_stats_text(),
+                      getMainStatsText(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: textColor,
                         fontSize: 56,
                       ),
                     ),
                   ],
                 )
               ],
-            ))
+            )),
+
+        //Steps today
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, defaultPadding, 0, defaultPadding),
+          child: Container(
+              height: screenSize.height * 0.2,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(35))),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(40, 0, 0, 0),
+                    child: Text(
+                      getStepsToday(),
+                      style: TextStyle(
+                        color: textColor,
+                        fontSize: textFontSize,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              )),
+        ),
       ],
     );
   }
