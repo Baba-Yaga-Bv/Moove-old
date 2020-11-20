@@ -4,6 +4,7 @@ from app.models.users_models import *
 from app.database import users_collection
 from app.database import token
 
+
 router = APIRouter()
 
 

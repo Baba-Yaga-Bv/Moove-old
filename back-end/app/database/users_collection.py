@@ -1,7 +1,10 @@
+from starlette import status
+
 from . import connection
-from fastapi import HTTPException
+from fastapi import HTTPException, Depends
 from app.models.users_models import *
 from passlib.context import CryptContext
+from app.database import token
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -33,3 +36,20 @@ def insert_user(user: UserRegisterCall):
                  last_name=user.last_name) \
         .save()
     return user
+
+
+def get_user_by_id(user_id: str = Depends(token.get_user_id)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    user_result = Users.objects(id=ObjectId(user_id)).first()
+    if not user_result:
+        raise credentials_exception
+
+    return user_result
+
+
+def get_user_by_email(user_email: str):
+    return Users.objects(email=user_email)

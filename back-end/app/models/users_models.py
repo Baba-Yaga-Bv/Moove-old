@@ -2,7 +2,8 @@ from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
 from .pydantic_objectid import PyObjectId
 from bson import ObjectId
-from mongoengine import *
+
+from mongoengine import Document, EmailField, StringField
 
 
 class UserLogin(BaseModel):
