@@ -39,7 +39,7 @@ class HomeBody extends StatelessWidget {
                           Text("Challenge name",style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
-                              fontSize: 32,
+                              fontSize: 48,
 
                           ),
 
