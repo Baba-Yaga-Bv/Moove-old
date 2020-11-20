@@ -14,23 +14,31 @@ class HomeBody extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
+
+        //Top containter
         Container(
-            height: screenSize.height * 0.3,
 
-            decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(35),
-                    bottomRight: Radius.circular(35))),
+          height: screenSize.height * 0.3,
+          decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              boxShadow: [BoxShadow(color: Theme.of(context).shadowColor,
+                                    blurRadius: 30)],
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(35),
+                  bottomRight: Radius.circular(35))),
 
-            //Progress metric
+          //Progress metric
 
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                //Challenge name
-                Row(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+
+
+
+                  //Progess text
+                  Row(
+
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
