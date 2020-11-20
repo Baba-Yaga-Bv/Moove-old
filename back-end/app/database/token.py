@@ -6,6 +6,8 @@ from bson import ObjectId
 from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer
 
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
 # openssl rand -hex 32
 SECRET_KEY = "c48c84f02c2b2334392044ea6bcd2307758451dabec81d2d549d745c09ee1355"
 ALGORITHM = "HS256"
