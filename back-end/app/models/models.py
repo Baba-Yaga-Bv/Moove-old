@@ -56,6 +56,16 @@ class UserCommunities(BaseModel):
     communities: List[CommunityBase] = []
 
 
+class CommunityMembers(BaseModel):
+    id: str
+
+    class UserBase(BaseModel):
+        id: str
+        name: str
+
+    members: List[UserBase] = []
+
+
 class Membership(Document):
     user_id = StringField(required=True)
     community_id = StringField(required=True)

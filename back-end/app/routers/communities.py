@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 
-import app.models.models
 from app.models.models import Users, CommunityCreate
 from app.database import users_collection
 from app.database import communities_collection
 from app.database import membership_collection
+from app.models.models import CommunityMembers
 import json
 
 router = APIRouter()
@@ -34,3 +34,14 @@ async def reject_community(community_id, user: Users = Depends(users_collection.
     # TODO: check if community exist
     membership_collection.reject_membership(community_id, str(user.id))
     return {"message": "Rejected the community"}
+
+
+@router.get("/{community_id}/members")
+async def list_community_members(community_id, user: Users = Depends(users_collection.get_user_by_id)):
+    # TODO: check if community exist
+    members = membership_collection.get_members(community_id)
+    response = CommunityMembers(id=community_id)
+    for member in members:
+        user = users_collection.get_user_by_id(member.user_id)
+        response.members.append(CommunityMembers.UserBase(id=str(user.id), name=user.first_name+" "+user.last_name))
+    return response
