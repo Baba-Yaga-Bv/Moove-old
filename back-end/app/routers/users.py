@@ -150,3 +150,9 @@ async def get_steps_at_date(date: str, user: Users = Depends(users_collection.ge
         return {date: current_dictionary[key]}
     else:
         raise HTTPException(status_code=400, detail="No data at this date")
+
+
+@router.get("/me/achievements")
+async def get_user_achievements(user: Users = Depends(users_collection.get_user_by_id)):
+    return {"achievements": user.achievements}
+
