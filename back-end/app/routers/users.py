@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File
 
 from app.models.models import *
 from app.database import users_collection
 from app.database import membership_collection
 from app.database import communities_collection
 from app.database import token
+from fastapi.responses import StreamingResponse
+
 
 import json
 
@@ -53,6 +55,26 @@ async def validate_token(user: Users = Depends(users_collection.get_user_by_id))
 @router.get("/me")
 async def get_current_user(user: Users = Depends(users_collection.get_user_by_id)):
     return prepare_for_return(user)
+
+
+@router.post("/me/upload_photo")
+async def upload_user_photo(photo: UploadFile = File(...), user: Users = Depends(users_collection.get_user_by_id)):
+    if user.photo:
+        user.photo.delete()
+    user.photo.put(photo.file, content_type=photo.content_type)
+    user.save()
+    return {}
+
+
+@router.get("/me/photo")
+async def user_photo(user: Users = Depends(users_collection.get_user_by_id)):
+    photo = [user.photo.read()]
+    aux = user.photo.read()
+    while aux:
+        photo.append(aux)
+        aux = user.photo.read()
+    photo = iter(photo)
+    return StreamingResponse(photo, media_type=user.photo.get().content_type)
 
 
 @router.get("/me/challenges")
