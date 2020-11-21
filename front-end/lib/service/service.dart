@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 
 class Service {
   core.String url = "http://10.0.2.2:8000";
-  AccessToken token;
+  AccessToken token = AccessToken("");
 
   core.Future<AccessToken> registerUser(email, firstName, lastName, password) async {
     final http.Response response = await http.post(

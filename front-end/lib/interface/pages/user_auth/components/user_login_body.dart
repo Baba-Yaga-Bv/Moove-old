@@ -50,11 +50,23 @@ class UserAuthLoginBody extends StatelessWidget {
                         style: TextButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
-                        }),
+                          try {
+                            service.loginUser(_email.text.toString(), _password
+                                .text.toString()).then(
+                                    (AccessToken token) {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => HomePage())
+                                  );
+                                }
+                            );
+                          } catch (exception) {
+                            print("Error: " + exception.toString());
+                          }
+                        }
+                  ),
+
                   ),
                   Padding(
                       padding: EdgeInsets.fromLTRB(30, 130, 30, 0),
@@ -69,21 +81,11 @@ class UserAuthLoginBody extends StatelessWidget {
                       style: TextButton.styleFrom(
                         backgroundColor: Theme.of(context).primaryColor),
                       onPressed: () {
-                        try {
-                          service.loginUser(_email.text.toString(), _password.text.toString()).then(
-                            (AccessToken token) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => UserAuthSignIn()
-                                )
-                              );
-                            }
-                          );
-                        } catch (exception) {
-                          print("Error: " + exception.toString());
-                        }
-                      }),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                            builder: (context) => UserAuthSignIn()));
+                          }),
                   )
                 ],
               )),
