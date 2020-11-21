@@ -9,6 +9,7 @@ from fastapi import Body
 class Community(Document):
     name = StringField(required=True)
     challenge = StringField(default="")
+    photo = FileField()
 
 
 class UserLogin(BaseModel):

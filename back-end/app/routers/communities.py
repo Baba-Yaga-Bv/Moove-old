@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 
 from pydantic import EmailStr
 from app.models.models import Users, CommunityCreate, ChallengeCreate, Community, Challenge
 from app.database import users_collection, communities_collection, membership_collection, challenges_collection
 from app.models.models import CommunityMembers, CommunityLeaderboard, CommunityMembersList
 import json
+from fastapi.responses import StreamingResponse
 
 router = APIRouter()
 
@@ -22,7 +23,8 @@ async def create_community(community: CommunityCreate,
 
 
 @router.get("/{community_id}")
-async def get_community(community_id: str, user: Users = Depends(users_collection.get_user_by_id)):
+async def get_community(community_id: str,
+                        user: Users = Depends(users_collection.get_user_by_id)):
     challenge = communities_collection.get_community_challenge(community_id)
     if challenge:
         return {"community_id": community_id, "id": str(user.id),
@@ -36,6 +38,30 @@ async def get_community(community_id: str, user: Users = Depends(users_collectio
                 }}
     return {"community_id": community_id, "id": str(user.id),
             "challenge": {}}
+
+
+@router.post("/{community_id}/upload_photo")
+async def upload_community_photo(community_id: str, photo: UploadFile = File(...),
+                                 user: Users = Depends(users_collection.get_user_by_id)):
+    community = communities_collection.get_community(community_id)
+    if community.photo:
+        community.photo.delete()
+    community.photo.put(photo.file, content_type=photo.content_type)
+    community.save()
+    return {}
+
+
+@router.get("/{community_id}/photo")
+async def community_photo(community_id: str,
+                          user: Users = Depends(users_collection.get_user_by_id)):
+    community = communities_collection.get_community(community_id)
+    photo = [community.photo.read()]
+    aux = community.photo.read()
+    while aux:
+        photo.append(aux)
+        aux = community.photo.read()
+    photo = iter(photo)
+    return StreamingResponse(photo, media_type=community.photo.get().content_type)
 
 
 @router.post("/{community_id}/add_members")
@@ -68,13 +94,13 @@ async def list_community_members(community_id, user: Users = Depends(users_colle
     response = CommunityMembers(id=community_id)
     for member in members:
         user = users_collection.get_user_by_id(member.user_id)
-        response.members.append(CommunityMembers.UserBase(id=str(user.id), name=user.first_name+" "+user.last_name))
+        response.members.append(CommunityMembers.UserBase(id=str(user.id), name=user.first_name + " " + user.last_name))
     return response
 
 
 @router.post("/{community_id}/propose_challenge")
 async def propose_challenge(community_id, _challenge: ChallengeCreate,
-                           user: Users = Depends(users_collection.get_user_by_id)):
+                            user: Users = Depends(users_collection.get_user_by_id)):
     challenges_collection.remove_old_challenge(community_id)
     challenge = challenges_collection.insert_challenge(_challenge)
     challenges_collection.add_challenge_to_community(community_id, str(challenge.id))
@@ -104,5 +130,5 @@ async def get_community_leaderboard(community_id: str, user: Users = Depends(use
     for member in members:
         user = users_collection.get_user_by_id(member.user_id)
         response.members.append(CommunityLeaderboard.ChallengeUser(score=member.score,
-                                                                   full_name=user.first_name+" "+user.last_name))
+                                                                   full_name=user.first_name + " " + user.last_name))
     return response
