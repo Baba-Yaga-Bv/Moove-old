@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:moove/interface/pages/communities/communities_page.dart';
 import 'package:moove/interface/pages/profile/profile_page.dart';
@@ -13,7 +15,7 @@ class UserAuthPageState extends State<UserAuth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildHomeBar(),
+      appBar: buildUserAuthBar(),
       body: UserAuthBody(),
       // Theme switching button
       floatingActionButton: FloatingActionButton.extended(
@@ -24,37 +26,17 @@ class UserAuthPageState extends State<UserAuth> {
           icon: Icon(Icons.brightness_5)),
     );
   }
-  AppBar buildHomeBar() {
+  AppBar buildUserAuthBar() {
     return AppBar(
-        elevation: 0,
-        // Communities page button
-        leading: IconButton(
-          icon: Icon(Icons.menu_open),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CommunitiesPage()
-                )
-            );
-          },
-          iconSize: 40,
-        ),
-        // Profile page button
-        actions: [
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProfilePage()
-                  )
-              );
-            },
-            iconSize: 40,
-          )
-        ]
+      elevation: 0,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      title: Text(
+        "M(.)(.)VE",
+        style: mediumTextStyle,
+      ),
+
+
     );
   }
 }
