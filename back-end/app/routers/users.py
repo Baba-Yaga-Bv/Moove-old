@@ -45,13 +45,18 @@ async def login_user(user=Depends(users_collection.login_user)):
             "user_profile": prepare_for_return(user)}
 
 
+@router.get("/token")
+async def validate_token(user: Users = Depends(users_collection.get_user_by_id)):
+    return {}
+
+
 @router.get("/me")
 async def get_current_user(user: Users = Depends(users_collection.get_user_by_id)):
     return prepare_for_return(user)
 
 
 @router.get("/me/communities")
-async def get_current_user(user: Users = Depends(users_collection.get_user_by_id)):
+async def get_current_user_communities(user: Users = Depends(users_collection.get_user_by_id)):
     communities = membership_collection.get_communities(str(user.id))
     response = UserCommunities(id=str(user.id))
     for community in communities:
