@@ -2,6 +2,7 @@ library config.global;
 
 import 'package:flutter/material.dart';
 import 'package:moove/interface/pages/communities/communities_page.dart';
+import 'package:moove/interface/pages/communities/components/CommunityListElement.dart';
 import 'package:moove/interface/pages/profile/profile_page.dart';
 import 'package:moove/interface/themes/theme_controller.dart';
 
@@ -96,7 +97,27 @@ AppBar buildUserAuthBar() {
     );
   }
 
+//App bar for single community
+AppBar buildSingleCommunityBar(CommunityListElement com) {
+  return AppBar(
+    elevation: 0,
+    centerTitle: true,
+    automaticallyImplyLeading: false,
 
+    leading: Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: DecorationImage(
+            fit: BoxFit.cover,
+            image:com.image,)
+    ),
+    ),
+  title: Text(
+      com.name,
+      style: mediumTextStyle,
+    ),
+  );
+}
 //App bar Home page
 AppBar buildHomeBar(BuildContext context) {
   return AppBar(

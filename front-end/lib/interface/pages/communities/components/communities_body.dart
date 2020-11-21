@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'CommunityListElement.dart';
 import '../../../config.dart';
 
 class CommunitiesBody extends StatefulWidget {
@@ -7,15 +7,7 @@ class CommunitiesBody extends StatefulWidget {
   State<StatefulWidget> createState() => CommunitiesBodyState();
 }
 
-class CommunityListElement {
-  String name;
-  AssetImage image;
 
-  CommunityListElement(String name, AssetImage image) {
-    this.name = name;
-    this.image = image;
-  }
-}
 
 class ComunityInviteElement extends CommunityListElement {
   ComunityInviteElement(String name, AssetImage image) : super(name, image);
@@ -35,7 +27,6 @@ class CommunitiesBodyState extends State<CommunitiesBody> {
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     getMyCommunities();
     return Column(children: [
       // Top container
