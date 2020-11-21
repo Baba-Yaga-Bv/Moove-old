@@ -33,9 +33,12 @@ class Users(Document):
     last_name = StringField(max_length=50)
 
 
-class CommunityCreate(BaseModel):
-    name: str
+class CommunityMembers(BaseModel):
     members: List[EmailStr]
+
+
+class CommunityCreate(CommunityMembers):
+    name: str
 
 
 class CommunityCreateResponse(BaseModel):

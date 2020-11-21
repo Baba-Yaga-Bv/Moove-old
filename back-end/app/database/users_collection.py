@@ -1,5 +1,6 @@
 from bson import ObjectId
 from starlette import status
+from pydantic import EmailStr
 
 from fastapi import HTTPException, Depends
 from passlib.context import CryptContext
