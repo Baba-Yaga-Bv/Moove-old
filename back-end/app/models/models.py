@@ -1,9 +1,17 @@
 from typing import List
 
+
+
+from mongoengine import Document, EmailField, StringField, BooleanField
+from mongoengine import IntField, ComplexDateTimeField, DictField, ListField
 from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, FileField
+from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, DictField
+from mongoengine import Document, EmailField, StringField, BooleanField
+from mongoengine import IntField, ComplexDateTimeField, DictField, ListField
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from fastapi import Body
+from typing import Optional
 
 
 class Community(Document):
@@ -27,12 +35,21 @@ class UserRegisterCall(UserProfile):
     password: str
 
 
+class UserAddSteps(BaseModel):
+    date: datetime = Body(None)
+    steps_to_add: int = 0
+
+
 class Users(Document):
     email = EmailField(required=True)
     password = StringField(required=True)
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
+    daily_steps = DictField(default={})
+    achievements = ListField(default=[])
     photo = FileField()
+    daily_steps = DictField(default={})
+    achievements = ListField(default=[])
 
 
 class CommunityMembersList(BaseModel):
@@ -115,3 +132,8 @@ class CommunityLeaderboard(BaseModel):
         score: str
 
     members: List[ChallengeUser] = []
+
+
+class Achievement(Document):
+    name = StringField(required=True)
+    description = StringField(default="")

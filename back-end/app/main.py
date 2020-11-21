@@ -1,11 +1,11 @@
 from fastapi import FastAPI, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
-from .database import users_collection, token
-from .models.models import UserLogin, UserProfile
+from .database import users_collection, token, achievements_collection
+from .models.models import UserLogin, Achievement
 from mongoengine import *
 
-from .routers import communities, users
+from .routers import communities, users, achievements
 
 app = FastAPI()
 connect('moove_database')
@@ -18,6 +18,9 @@ async def root():
 
 app.include_router(communities.router, prefix="/communities", tags=["communities"])
 app.include_router(users.router, prefix="/users", tags=["users"])
+app.include_router(achievements.router, prefix="/achievements", tags=["achievements"])
+if Achievement.objects().count() == 0:
+    achievements_collection.populate_achievements_db()
 
 
 @app.post("/token")
