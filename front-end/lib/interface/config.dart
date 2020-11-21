@@ -28,6 +28,8 @@ ThemeController themeController = ThemeController();
 Radius defaultRoundedCorner = Radius.circular(40);
 
 // Icons
+double smallIconSize = 20;
+double mediumIconSize = 30;
 double defaultIconSize = 40;
 
 // Blur
