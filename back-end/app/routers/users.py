@@ -61,3 +61,21 @@ async def get_current_user(user: Users = Depends(users_collection.get_user_by_id
                                                       community.community_id),
                                                   is_joined=community.is_joined))
     return response
+
+
+@router.get("/me/{community_id}/add_challenge_reward")
+async def update_score(community_id, user: Users = Depends(users_collection.get_user_by_id)):
+    community = Community.objects(id=community_id).get()
+    challenge_id = community.challenge
+    membership = membership_collection.add_challenge_reward(str(user.id), community_id, challenge_id)
+    json_obj = membership.to_json()
+    dictionary = json.loads(json_obj)
+    dictionary["id"] = dictionary["_id"]["$oid"]
+    del dictionary["_id"]
+    return dictionary
+
+
+@router.get("/me/{community_id}/get_score")
+async def get_score(community_id, user: Users = Depends(users_collection.get_user_by_id)):
+    membership = Membership.objects(user_id=str(user.id), community_id=community_id).get()
+    return {"Score": membership.score}

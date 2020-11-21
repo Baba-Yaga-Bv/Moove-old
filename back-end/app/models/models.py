@@ -73,6 +73,7 @@ class Membership(Document):
     user_id = StringField(required=True)
     community_id = StringField(required=True)
     is_joined = BooleanField(required=True)
+    score = IntField(default=0)
 
 
 class Challenge(Document):

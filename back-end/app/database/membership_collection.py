@@ -1,4 +1,4 @@
-from ..models.models import Membership
+from ..models.models import Membership, Community, Challenge
 from fastapi import HTTPException
 
 
@@ -29,3 +29,13 @@ def get_members(community_id: str):
 def get_communities(user_id: str):
     communities = Membership.objects(user_id=user_id)
     return communities
+
+
+def add_challenge_reward(user_id, community_id, challenge_id):
+    challenge = Challenge.objects(id=challenge_id).get()
+    membership = Membership.objects(user_id=user_id, community_id=community_id).get()
+
+    membership.score += challenge.reward
+    return membership.save()
+
+

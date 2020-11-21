@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 
-from app.models.models import Users, CommunityCreate, ChallengeCreate, Community
+from app.models.models import Users, CommunityCreate, ChallengeCreate, Community, Challenge
 from app.database import users_collection, communities_collection, membership_collection, challenges_collection
 from app.models.models import CommunityMembers
 import json
@@ -56,7 +56,11 @@ async def create_challenge(community_id, _challenge: ChallengeCreate):
 @router.get("/{community_id}/challenge")
 async def get_challenge(community_id):
     community = Community.objects(id=community_id).get()
-    json_obj = community.to_json()
+    challenge_id = community.challenge
+    if challenge_id == "":
+        raise HTTPException(status_code=400, detail="Community has no challenge")
+    challenge = Challenge.objects(id=challenge_id).get()
+    json_obj = challenge.to_json()
     dictionary = json.loads(json_obj)
     dictionary["id"] = dictionary["_id"]["$oid"]
     del dictionary["_id"]
