@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moove/config.dart';
+import 'package:moove/interface/config.dart';
 
 class HomeBody extends StatelessWidget {
   String getMainStatsText() {

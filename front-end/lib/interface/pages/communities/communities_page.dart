@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moove/pages/home/home.dart';
 
 import '../../config.dart';
 import 'components/communities_body.dart';

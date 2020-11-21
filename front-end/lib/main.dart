@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moove/pages/home/home.dart';
-import 'config.dart';
+import 'package:moove/interface/config.dart';
+import 'package:moove/interface/pages/home/home_page.dart';
 
 void main() {
   runApp(MooveApp());

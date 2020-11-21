@@ -1,6 +1,7 @@
 library config.global;
+
 import 'package:flutter/material.dart';
-import 'package:moove/themes/theme_controller.dart';
+import 'package:moove/interface/themes/theme_controller.dart';
 
 // Colors
 Color primaryColor = Colors.greenAccent;

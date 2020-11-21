@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moove/config.dart';
-import 'package:moove/pages/communities/communities.dart';
-import 'package:moove/pages/profile/profile.dart';
+import 'package:moove/interface/pages/communities/communities_page.dart';
+import 'package:moove/interface/pages/profile/profile_page.dart';
 
+import '../../config.dart';
 import 'components/home_body.dart';
 
 class HomePage extends StatefulWidget {
