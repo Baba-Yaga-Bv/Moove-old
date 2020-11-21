@@ -4,11 +4,14 @@ import 'package:moove/interface/pages/user_auth/user_auth_page_login.dart';
 import 'package:moove/service/service.dart';
 import 'package:moove/utils/pedometer.dart';
 
-Service service = Service();
-
-MoovePedometer moovePedometer = MoovePedometer();
+Service service;
+MoovePedometer pedometer;
 
 void main() {
+  print("Starting app...");
+  WidgetsFlutterBinding.ensureInitialized();
+  service  = Service();
+  pedometer = MoovePedometer();
   runApp(MooveApp());
 }
 
@@ -24,7 +27,6 @@ class MooveAppState extends State<MooveApp> {
     themeController.addListener(() {
       setState(() {});
     });
-    moovePedometer.initPlatformState();
   }
 
   @override

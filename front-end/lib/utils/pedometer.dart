@@ -2,42 +2,27 @@ import 'package:pedometer/pedometer.dart';
 import 'dart:async';
 
 class MoovePedometer {
-  Stream<StepCount> _stepCountStream;
-  Stream<PedestrianStatus> _pedestrianStatusStream;
+  int _stepCountValue = -1;
+  StreamSubscription<StepCount> _subscription;
 
-  void onStepCount(StepCount event) {
-    // Handle step count changed
-    int steps = event.steps;
-    DateTime timeStamp = event.timeStamp;
-    print(steps.toString() + " | " + timeStamp.toString());
+  MoovePedometer() {
+    print("Starting pedometer...");
+    setUpPedometer();
   }
 
-  void onPedestrianStatusChanged(PedestrianStatus event) {
-    // Handle status changed
-    String status = event.status;
-    DateTime timeStamp = event.timeStamp;
-    print(status.toString() + " | " + timeStamp.toString());
+  void setUpPedometer() {
+    _subscription = Pedometer.stepCountStream.listen(_onData,
+        onError: _onError, onDone: _onDone, cancelOnError: true);
   }
 
-  void onPedestrianStatusError(error) {
-    // Handle the error
-    print(error.toString());
+  void _onData(StepCount stepCountValue) async {
+    print(stepCountValue);
+    _stepCountValue = stepCountValue.steps;
   }
 
-  void onStepCountError(error) {
-    // Handle the error
-    print(error.toString());
-  }
+    void _onError(error) {
+      print("Pedometer error: $error");
+    }
 
-  Future<void> initPlatformState() async {
-    // Init streams
-    _pedestrianStatusStream = await Pedometer.pedestrianStatusStream;
-    _stepCountStream = await Pedometer.stepCountStream;
-
-    // Listen to streams and handle errors
-    _stepCountStream.listen(onStepCount).onError(onStepCountError);
-    _pedestrianStatusStream
-        .listen(onPedestrianStatusChanged)
-        .onError(onPedestrianStatusError);
-  }
+    void _onDone() {}
 }
