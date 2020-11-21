@@ -19,15 +19,15 @@ class UserAuthSignInPageState extends State<UserAuthSignIn> {
     );
   }
 
-  AppBar buildUserAuthBar() {
-    return AppBar(
-      elevation: 0,
-      centerTitle: true,
-      automaticallyImplyLeading: false,
-      title: Text(
-        "M(.)(.)VE",
-        style: mediumTextStyle,
-      ),
-    );
-  }
+  // AppBar buildUserAuthBar() {
+  //   return AppBar(
+  //     elevation: 0,
+  //     centerTitle: true,
+  //     automaticallyImplyLeading: false,
+  //     title: Text(
+  //       "M(.)(.)VE",
+  //       style: mediumTextStyle,
+  //     ),
+  //   );
+  // }
 }

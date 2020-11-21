@@ -14,7 +14,7 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildHomeBar(),
+      appBar: buildHomeBar(context),
       body: HomeBody(),
       // Theme switching button
       floatingActionButton: FloatingActionButton.extended(
@@ -26,37 +26,37 @@ class HomePageState extends State<HomePage> {
     );
   }
 
-  AppBar buildHomeBar() {
-    return AppBar(
-      elevation: 0,
-      // Communities page button
-      leading: IconButton(
-        icon: Icon(Icons.menu_open),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CommunitiesPage()
-            )
-          );
-        },
-        iconSize: 40,
-      ),
-      // Profile page button
-      actions: [
-        IconButton(
-          icon: Icon(Icons.person),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => ProfilePage()
-              )
-            );
-          },
-          iconSize: 40,
-        )
-      ]
-    );
-  }
+  // AppBar buildHomeBar() {
+  //   return AppBar(
+  //     elevation: 0,
+  //     // Communities page button
+  //     leading: IconButton(
+  //       icon: Icon(Icons.menu_open),
+  //       onPressed: () {
+  //         Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) => CommunitiesPage()
+  //           )
+  //         );
+  //       },
+  //       iconSize: 40,
+  //     ),
+  //     // Profile page button
+  //     actions: [
+  //       IconButton(
+  //         icon: Icon(Icons.person),
+  //         onPressed: () {
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //                 builder: (context) => ProfilePage()
+  //             )
+  //           );
+  //         },
+  //         iconSize: 40,
+  //       )
+  //     ]
+  //   );
+  // }
 }
