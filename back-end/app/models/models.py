@@ -1,11 +1,14 @@
 from typing import List
 
-from mongoengine import Document, EmailField, StringField, BooleanField
+from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField
 from pydantic import BaseModel, EmailStr
+from datetime import datetime
+from fastapi import Body
 
 
 class Community(Document):
     name = StringField(required=True)
+    challenge = StringField(default="")
 
 
 class UserLogin(BaseModel):
@@ -70,3 +73,19 @@ class Membership(Document):
     user_id = StringField(required=True)
     community_id = StringField(required=True)
     is_joined = BooleanField(required=True)
+
+
+class Challenge(Document):
+    name = StringField(required=True)
+    number_of_steps = IntField(required=True)
+    reward = IntField(required=True)
+    start_date = ComplexDateTimeField(required=True)
+    end_date = ComplexDateTimeField(required=True)
+
+
+class ChallengeCreate(BaseModel):
+    name: str
+    number_of_steps: int
+    reward: int
+    start_date: datetime = Body(None)
+    end_date: datetime = Body(None)

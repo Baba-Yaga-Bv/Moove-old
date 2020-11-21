@@ -15,4 +15,6 @@ def insert_community(_name: str, members: List[EmailStr]):
 
 
 def get_community_name(community_id: str):
-    return Community.objects(id=ObjectId(community_id)).get().name
+    return Community.objects(id=community_id).get().name
+
+
