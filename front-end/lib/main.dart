@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/communities/communities_page.dart';
+import 'package:moove/interface/pages/user_auth/user_auth_page_login.dart';
 import 'package:moove/interface/pages/user_auth/user_auth_page_sign_in.dart';
 import 'package:moove/service/service.dart';
 
@@ -30,11 +31,11 @@ class MooveAppState extends State<MooveApp> {
     return MaterialApp(
         title: "Moove!",
         debugShowCheckedModeBanner: false,
+        // Set themes
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: themeController.currentTheme(),
-        // home: CommunitiesPage());     //Start on Communities List
-        home: UserAuthSignIn());      //Start on Sign In
-        //home: HomePage());              //Start on Homepage
+        // Start on log in
+        home: UserAuthLogin());
   }
 }

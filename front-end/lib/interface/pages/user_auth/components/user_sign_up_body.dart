@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moove/domain/access_token.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/home/home_page.dart';
 import 'package:moove/main.dart';
@@ -77,13 +78,18 @@ class UserAuthSignUpBody extends StatelessWidget {
                             backgroundColor: Theme.of(context).primaryColor),
                         onPressed: () {
                           try {
-                            service.registerUser(_email.text.toString(), _firstName.text.toString(), _lastName.text.toString(), _password.text.toString());
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                            service.registerUser(_email.text.toString(), _firstName.text.toString(), _lastName.text.toString(), _password.text.toString()).then(
+                              (AccessToken token) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage()
+                                  )
+                                );
+                              }
+                            );
                           } catch (exception) {
-
+                            print("Error: " + exception.toString());
                           }
                         }),
                   ),
