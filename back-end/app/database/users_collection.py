@@ -1,6 +1,6 @@
 from bson import ObjectId
 from starlette import status
-from pydantic import EmailStr
+from datetime import datetime, timedelta
 
 from fastapi import HTTPException, Depends
 from passlib.context import CryptContext
@@ -51,3 +51,12 @@ def get_user_by_id(user_id: str = Depends(token.get_user_id)):
 
 def get_user_by_email(user_email: str):
     return Users.objects(email=user_email)
+
+
+def date_in_dict(_date: datetime.date, dictionary: dict):
+    for key, value in dictionary.items():
+        date = datetime.strptime(key, "%Y-%m-%d").date()
+        if _date == date:
+            return str(key)
+    return None
+

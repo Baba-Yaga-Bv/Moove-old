@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, UploadFile, File
+from fastapi import APIRouter, Depends, HTTPException
 
 from app.models.models import *
 from app.database import users_collection
@@ -123,3 +124,28 @@ async def update_score(community_id, user: Users = Depends(users_collection.get_
 async def get_score(community_id, user: Users = Depends(users_collection.get_user_by_id)):
     membership = Membership.objects(user_id=str(user.id), community_id=community_id).get()
     return {"Score": membership.score}
+
+
+@router.post("/me/add_steps")
+async def update_steps(userSteps: UserAddSteps, user: Users = Depends(users_collection.get_user_by_id)):
+    current_dictionary = {**user.daily_steps}
+    date_to_add = userSteps.date.date()
+    key = users_collection.date_in_dict(date_to_add, current_dictionary)
+    if key is not None:
+        current_dictionary[key] += userSteps.steps_to_add
+    else:
+        current_dictionary[str(date_to_add)] = userSteps.steps_to_add
+
+    user.daily_steps = current_dictionary
+    user.save()
+    return prepare_for_return(user)
+
+
+@router.get("/me/{date}/steps")
+async def get_steps_at_date(date: str, user: Users = Depends(users_collection.get_user_by_id)):
+    current_dictionary = {**user.daily_steps}
+    key = users_collection.date_in_dict(datetime.strptime(date, "%Y-%m-%d").date(), current_dictionary)
+    if key is not None:
+        return {date: current_dictionary[key]}
+    else:
+        raise HTTPException(status_code=400, detail="No data at this date")

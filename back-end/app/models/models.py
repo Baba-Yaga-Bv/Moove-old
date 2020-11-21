@@ -1,6 +1,8 @@
 from typing import List
 
+
 from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, FileField
+from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, DictField
 from pydantic import BaseModel, EmailStr
 from datetime import datetime
 from fastapi import Body
@@ -27,12 +29,18 @@ class UserRegisterCall(UserProfile):
     password: str
 
 
+class UserAddSteps(BaseModel):
+    date: datetime = Body(None)
+    steps_to_add: int = 0
+
+
 class Users(Document):
     email = EmailField(required=True)
     password = StringField(required=True)
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
     photo = FileField()
+    daily_steps = DictField(default={})
 
 
 class CommunityMembersList(BaseModel):
