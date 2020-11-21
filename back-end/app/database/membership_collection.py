@@ -22,8 +22,7 @@ def reject_membership(community_id: str, user_id: str):
 
 
 def get_members(community_id: str):
-    members = Membership.objects(community_id=community_id, is_joined=True)
-    return members
+    return Membership.objects(community_id=community_id, is_joined=True)
 
 
 def get_communities(user_id: str):

@@ -100,3 +100,13 @@ class UserChallenge(BaseModel):
         community_id: str
 
     challenges: List[ChallengeBase] = []
+
+
+class CommunityLeaderboard(BaseModel):
+    id: str
+
+    class ChallengeUser(BaseModel):
+        full_name: str
+        score: str
+
+    members: List[ChallengeUser] = []
