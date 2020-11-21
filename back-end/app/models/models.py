@@ -1,6 +1,9 @@
 from typing import List
 
 
+
+from mongoengine import Document, EmailField, StringField, BooleanField
+from mongoengine import IntField, ComplexDateTimeField, DictField, ListField
 from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, FileField
 from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, DictField
 from mongoengine import Document, EmailField, StringField, BooleanField
@@ -42,6 +45,8 @@ class Users(Document):
     password = StringField(required=True)
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
+    daily_steps = DictField(default={})
+    achievements = ListField(default=[])
     photo = FileField()
     daily_steps = DictField(default={})
     achievements = ListField(default=[])
