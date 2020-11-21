@@ -1,16 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi import APIRouter, Depends, UploadFile, File
-from fastapi import APIRouter, Depends, HTTPException
+import json
 
-from app.models.models import *
-from app.database import users_collection
-from app.database import membership_collection
-from app.database import communities_collection
-from app.database import token
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi import UploadFile, File
 from fastapi.responses import StreamingResponse
 
-
-import json
+from app.database import communities_collection
+from app.database import membership_collection
+from app.database import token
+from app.database import users_collection
+from app.models.models import *
 
 router = APIRouter()
 

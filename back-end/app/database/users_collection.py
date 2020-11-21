@@ -1,12 +1,13 @@
-from bson import ObjectId
-from starlette import status
 from datetime import datetime
 
+from bson import ObjectId
 from fastapi import HTTPException, Depends
 from passlib.context import CryptContext
+from starlette import status
+
 from app.database import token
-from ..models.models import UserLogin, UserRegisterCall, Users, Achievement
 from ..database import achievements_collection
+from ..models.models import UserLogin, UserRegisterCall, Users
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

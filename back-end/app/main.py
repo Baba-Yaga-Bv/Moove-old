@@ -1,10 +1,9 @@
 from fastapi import FastAPI, Depends
 from fastapi.security import OAuth2PasswordRequestForm
+from mongoengine import *
 
 from .database import users_collection, token, achievements_collection
 from .models.models import UserLogin, Achievement
-from mongoengine import *
-
 from .routers import communities, users
 
 app = FastAPI()

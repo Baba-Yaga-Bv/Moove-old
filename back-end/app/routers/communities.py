@@ -1,11 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
+import json
 
-from pydantic import EmailStr
-from app.models.models import Users, CommunityCreate, ChallengeCreate, Community, Challenge
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
+from fastapi.responses import StreamingResponse
+
 from app.database import users_collection, communities_collection, membership_collection, challenges_collection
 from app.models.models import CommunityMembers, CommunityLeaderboard, CommunityMembersList
-import json
-from fastapi.responses import StreamingResponse
+from app.models.models import Users, CommunityCreate, ChallengeCreate, Community, Challenge
 
 router = APIRouter()
 

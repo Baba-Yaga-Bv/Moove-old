@@ -1,17 +1,11 @@
+from datetime import datetime
 from typing import List
 
-
-
+from fastapi import Body
 from mongoengine import Document, EmailField, StringField, BooleanField
-from mongoengine import IntField, ComplexDateTimeField, DictField, ListField
-from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, FileField
-from mongoengine import Document, EmailField, StringField, BooleanField, IntField, ComplexDateTimeField, DictField
-from mongoengine import Document, EmailField, StringField, BooleanField
+from mongoengine import FileField
 from mongoengine import IntField, ComplexDateTimeField, DictField, ListField
 from pydantic import BaseModel, EmailStr
-from datetime import datetime
-from fastapi import Body
-from typing import Optional
 
 
 class Community(Document):

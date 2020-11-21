@@ -1,10 +1,9 @@
-from typing import Optional
-from pydantic import BaseModel
 from datetime import datetime, timedelta
+
 from bson import ObjectId
 from fastapi import Depends, HTTPException
-from jose import JWTError, jwt
 from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
 from starlette import status
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")

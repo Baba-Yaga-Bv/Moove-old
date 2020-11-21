@@ -1,5 +1,6 @@
-from ..models.models import Membership, Challenge
 from fastapi import HTTPException
+
+from ..models.models import Membership, Challenge
 
 
 def add_membership(community_id: str, user_id: str):
