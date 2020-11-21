@@ -41,5 +41,11 @@ TextStyle mediumTextStyle = TextStyle(
   fontSize: 30,
 );
 
+TextStyle smallTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+  fontSize: 16,
+);
+
 // Padding
 double mediumPadding = 20;
