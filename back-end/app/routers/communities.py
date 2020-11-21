@@ -20,6 +20,23 @@ async def create_community(community: CommunityCreate,
     return json.loads(community.to_json())
 
 
+@router.get("/{community_id}")
+async def get_community(community_id, user: Users = Depends(users_collection.get_user_by_id)):
+    challenge = communities_collection.get_community_challenge(community_id)
+    if challenge:
+        return {"community_id": community_id, "id": str(user.id),
+                "challenge": {
+                    "name": challenge.name,
+                    "number_of_steps": challenge.number_of_steps,
+                    "reward": challenge.reward,
+                    "start_date": challenge.start_date,
+                    "end_date": challenge.end_date,
+                    "id": str(challenge.id)
+                }}
+    return {"community_id": community_id, "id": str(user.id),
+            "challenge": {}}
+
+
 @router.post("/{community_id}/join")
 async def join_in_community(community_id, user: Users = Depends(users_collection.get_user_by_id)):
     # TODO: check if community exist

@@ -55,6 +55,23 @@ async def get_current_user(user: Users = Depends(users_collection.get_user_by_id
     return prepare_for_return(user)
 
 
+@router.get("/me/challenges")
+async def get_user_active_challenges(user: Users = Depends(users_collection.get_user_by_id)):
+    communities = membership_collection.get_communities(str(user.id))
+    response = UserChallenge(id=str(user.id))
+    for community in communities:
+        if community.is_joined:
+            challenge = communities_collection.get_community_challenge(str(community.community_id))
+            if challenge:
+                response.challenges.append(UserCommunities.CommunityBase(
+                    name=challenge.name, number_of_steps=challenge.number_of_steps,
+                    reward=challenge.reward, start_date=challenge.start_date,
+                    end_date=challenge.end_date, id=challenge.id,
+                    community_id=str(community.id)
+                ))
+    return response
+
+
 @router.get("/me/communities")
 async def get_current_user_communities(user: Users = Depends(users_collection.get_user_by_id)):
     communities = membership_collection.get_communities(str(user.id))

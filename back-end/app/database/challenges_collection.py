@@ -1,3 +1,5 @@
+from bson import ObjectId
+
 from app.models.models import Community, ChallengeCreate, Challenge
 
 
@@ -26,3 +28,7 @@ def remove_old_challenge(community_id):
 
     community.challenge = ""
     community.save()
+
+
+def get_challenge(challenge_id: str):
+    return Challenge.objects(id=ObjectId(challenge_id)).get()

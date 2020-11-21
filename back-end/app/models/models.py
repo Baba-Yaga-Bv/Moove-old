@@ -90,3 +90,13 @@ class ChallengeCreate(BaseModel):
     reward: int
     start_date: datetime = Body(None)
     end_date: datetime = Body(None)
+
+
+class UserChallenge(BaseModel):
+    id: str
+
+    class ChallengeBase(ChallengeCreate):
+        id: str
+        community_id: str
+
+    challenges: List[ChallengeBase] = []
