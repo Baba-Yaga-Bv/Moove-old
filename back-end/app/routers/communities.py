@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import EmailStr
 from app.models.models import Users, CommunityCreate, ChallengeCreate, Community, Challenge
 from app.database import users_collection, communities_collection, membership_collection, challenges_collection
-from app.models.models import CommunityMembers, CommunityLeaderboard
+from app.models.models import CommunityMembers, CommunityLeaderboard, CommunityMembersList
 import json
 
 router = APIRouter()
@@ -38,10 +38,10 @@ async def get_community(community_id: str, user: Users = Depends(users_collectio
             "challenge": {}}
 
 
-@router.get("/{community_id}/add_members")
-async def add_members_to_community(community_id: str, members: CommunityMembers,
+@router.post("/{community_id}/add_members")
+async def add_members_to_community(community_id: str, members: CommunityMembersList,
                                    user: Users = Depends(users_collection.get_user_by_id)):
-    members_ref = Users.objects(__raw__={'email': {'$in': members}})
+    members_ref = Users.objects(__raw__={'email': {'$in': members.members}})
     for member in members_ref:
         membership_collection.add_membership(str(community_id), str(member.id))
     return {}
@@ -73,7 +73,8 @@ async def list_community_members(community_id, user: Users = Depends(users_colle
 
 
 @router.post("/{community_id}/propose_challenge")
-async def create_challenge(community_id, _challenge: ChallengeCreate, user: Users = Depends(users_collection.get_user_by_id)):
+async def propose_challenge(community_id, _challenge: ChallengeCreate,
+                           user: Users = Depends(users_collection.get_user_by_id)):
     challenges_collection.remove_old_challenge(community_id)
     challenge = challenges_collection.insert_challenge(_challenge)
     challenges_collection.add_challenge_to_community(community_id, str(challenge.id))

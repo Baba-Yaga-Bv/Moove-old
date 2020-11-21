@@ -63,10 +63,10 @@ async def get_user_active_challenges(user: Users = Depends(users_collection.get_
         if community.is_joined:
             challenge = communities_collection.get_community_challenge(str(community.community_id))
             if challenge:
-                response.challenges.append(UserCommunities.CommunityBase(
+                response.challenges.append(UserChallenge.ChallengeBase(
                     name=challenge.name, number_of_steps=challenge.number_of_steps,
                     reward=challenge.reward, start_date=challenge.start_date,
-                    end_date=challenge.end_date, id=challenge.id,
+                    end_date=challenge.end_date, id=str(challenge.id),
                     community_id=str(community.id)
                 ))
     return response
