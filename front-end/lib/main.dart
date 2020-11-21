@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/communities/communities_page.dart';
 import 'package:moove/interface/pages/user_auth/user_auth_page_sign_in.dart';
+import 'package:moove/service/service.dart';
 
-import 'interface/pages/home/home_page.dart';
+Service service = Service();
 
 void main() {
   runApp(MooveApp());
@@ -21,6 +22,7 @@ class MooveAppState extends State<MooveApp> {
     themeController.addListener(() {
       setState(() {});
     });
+
   }
 
   @override
@@ -31,8 +33,8 @@ class MooveAppState extends State<MooveApp> {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: themeController.currentTheme(),
-        home: CommunitiesPage());     //Start on Communities List
-        //home: UserAuthSignIn());      //Start on Sign In
+        // home: CommunitiesPage());     //Start on Communities List
+        home: UserAuthSignIn());      //Start on Sign In
         //home: HomePage());              //Start on Homepage
   }
 }
