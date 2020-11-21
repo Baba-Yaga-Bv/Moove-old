@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-21T06:04:10.328Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="08GAiSDgxHF_jwAWK9YY" version="13.10.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-21T08:44:21.144Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.102 Safari/537.36" etag="0_9Yh9E919tdOqeODDE6" version="13.10.0" type="github">
   <diagram id="CE0fjsKFniwbX-WwhrP7" name="Page-1">
-    <mxGraphModel dx="454" dy="793" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1422" dy="806" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -96,6 +96,18 @@
         </mxCell>
         <mxCell id="u_1aO_M8Ka4acSWOvHfB-23" value="propose challenge&lt;br&gt;/c/{id}/propose_&lt;br&gt;challenge" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="530" y="560" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u_1aO_M8Ka4acSWOvHfB-25" value="create community&lt;br&gt;/communities/create" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="436" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u_1aO_M8Ka4acSWOvHfB-26" value="join community&lt;br&gt;/communities/id/accept" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u_1aO_M8Ka4acSWOvHfB-27" value="reject/leave community&lt;br&gt;/communities/id/reject" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="600" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="u_1aO_M8Ka4acSWOvHfB-28" value="add member to community&lt;br&gt;/communities/id/add_&lt;br&gt;member" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="680" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
