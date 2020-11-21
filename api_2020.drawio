@@ -1,31 +1,31 @@
-<mxfile host="app.diagrams.net" modified="2020-11-21T10:02:42.341Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="v_I3QKBHRsefYB4QRoXX" version="13.10.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-21T19:33:01.423Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="Tvs_aQk4pYZWzD4aLRQg" version="13.10.0" type="github">
   <diagram id="CE0fjsKFniwbX-WwhrP7" name="Page-1">
-    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1535" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="0hAFBkoV9jaoluaaZlGL-1" value="user: db" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="100" y="40" width="140" height="90" as="geometry" />
+          <mxGeometry x="50" y="40" width="140" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="0hAFBkoV9jaoluaaZlGL-2" value="email: str&#xa;password: hash&#xa;first_name: str&#xa;last_name: str&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="0hAFBkoV9jaoluaaZlGL-1" vertex="1">
-          <mxGeometry y="26" width="140" height="64" as="geometry" />
+        <mxCell id="0hAFBkoV9jaoluaaZlGL-2" value="email: str&#xa;password: hash&#xa;first_name: str&#xa;last_name: str&#xa;daily_steps: dict&#xa;achievements: List&#xa;photo: file" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="0hAFBkoV9jaoluaaZlGL-1" vertex="1">
+          <mxGeometry y="26" width="140" height="114" as="geometry" />
         </mxCell>
         <mxCell id="0hAFBkoV9jaoluaaZlGL-10" value="membership: db" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="260" y="130" width="140" height="100" as="geometry" />
+          <mxGeometry x="230" y="170" width="140" height="100" as="geometry" />
         </mxCell>
         <mxCell id="0hAFBkoV9jaoluaaZlGL-11" value="user_id:str&#xa;community_id: str&#xa;is_joined: bool&#xa;score: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="0hAFBkoV9jaoluaaZlGL-10" vertex="1">
           <mxGeometry y="26" width="140" height="74" as="geometry" />
         </mxCell>
         <mxCell id="0hAFBkoV9jaoluaaZlGL-5" value="community: db" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="270" y="40" width="140" height="50" as="geometry" />
+          <mxGeometry x="230" y="40" width="140" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="0hAFBkoV9jaoluaaZlGL-6" value="name: str&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="0hAFBkoV9jaoluaaZlGL-5" vertex="1">
-          <mxGeometry y="26" width="140" height="24" as="geometry" />
+        <mxCell id="0hAFBkoV9jaoluaaZlGL-6" value="name: str&#xa;challenge: string&#xa;photo: file" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="0hAFBkoV9jaoluaaZlGL-5" vertex="1">
+          <mxGeometry y="26" width="140" height="54" as="geometry" />
         </mxCell>
         <mxCell id="LGmJAGL05ej20YnwsvgD-1" value="chalange: db" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
           <mxGeometry x="60" y="230" width="140" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="LGmJAGL05ej20YnwsvgD-2" value="number_of_steps: int&#xa;create_at: date_time&#xa;deadline: date_time&#xa;name: str&#xa;reward: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LGmJAGL05ej20YnwsvgD-1" vertex="1">
+        <mxCell id="LGmJAGL05ej20YnwsvgD-2" value="name: str&#xa;number_of_steps: int&#xa;reward: int&#xa;start_date: date_time&#xa;end_date: date_time&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="LGmJAGL05ej20YnwsvgD-1" vertex="1">
           <mxGeometry y="26" width="140" height="84" as="geometry" />
         </mxCell>
         <mxCell id="u_1aO_M8Ka4acSWOvHfB-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="u_1aO_M8Ka4acSWOvHfB-1" target="u_1aO_M8Ka4acSWOvHfB-2" edge="1">
@@ -102,6 +102,12 @@
         </mxCell>
         <mxCell id="u_1aO_M8Ka4acSWOvHfB-28" value="add member to community&lt;br&gt;/communities/id/add_&lt;br&gt;member" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="690" y="680" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="51xgPb7xSy7C0_61lGQj-1" value="achivement: db" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="386" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="51xgPb7xSy7C0_61lGQj-2" value="name: str&#xa;description: str&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="51xgPb7xSy7C0_61lGQj-1">
+          <mxGeometry y="26" width="140" height="44" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
