@@ -19,7 +19,15 @@ class ProfilePageState extends State<ProfilePage> {
 
   AppBar buildProfileBar() {
     return AppBar(
+      automaticallyImplyLeading: false,
       elevation: 0,
+      leading: IconButton(
+        icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        iconSize: defaultIconSize,
+      ),
       actions: [
         IconButton(
           icon: Icon(Icons.settings),
