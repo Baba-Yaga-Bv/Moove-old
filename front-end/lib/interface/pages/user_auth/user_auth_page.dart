@@ -56,4 +56,5 @@ class UserAuthPageState extends State<UserAuth> {
           )
         ]
     );
+  }
 }
