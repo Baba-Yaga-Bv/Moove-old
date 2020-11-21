@@ -19,6 +19,7 @@ class ProfilePageState extends State<ProfilePage> {
 
   AppBar buildProfileBar() {
     return AppBar(
+      centerTitle: true,
       automaticallyImplyLeading: false,
       elevation: 0,
       leading: IconButton(
@@ -27,6 +28,11 @@ class ProfilePageState extends State<ProfilePage> {
           Navigator.pop(context);
         },
         iconSize: defaultIconSize,
+      ),
+      title: Text(
+        "Profile",
+        style: smallTextStyle,
+        textAlign: TextAlign.center
       ),
       actions: [
         IconButton(

@@ -95,7 +95,7 @@ class HomeBody extends StatelessWidget {
                   return Container(
                     height: screenSize.height*0.2,
                     decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: cardColor,
                       borderRadius: BorderRadius.all(Radius.circular(35))
                     ),
                     child: Center(
