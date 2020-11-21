@@ -13,15 +13,15 @@ class HomeBody extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
-        //Top container
+        // Top container
         Container(
           height: screenSize.height * 0.3,
           decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
-            boxShadow: [BoxShadow(color: Theme.of(context).shadowColor, blurRadius: 30)],
+            boxShadow: [BoxShadow(color: Theme.of(context).shadowColor, blurRadius: defaultBlurRadius)],
             borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(35),
-                bottomRight: Radius.circular(35)
+              bottomLeft: defaultRoundedCorner,
+              bottomRight: defaultRoundedCorner
             )
           ),
           // Progress metric
