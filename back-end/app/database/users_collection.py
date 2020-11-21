@@ -1,10 +1,13 @@
-from bson import ObjectId
-from starlette import status
+from datetime import datetime
 
+from bson import ObjectId
 from fastapi import HTTPException, Depends
 from passlib.context import CryptContext
+from starlette import status
+
 from app.database import token
-from ..models.models import UserLogin, UserProfile, UserRegisterCall, Users
+from ..database import achievements_collection
+from ..models.models import UserLogin, UserRegisterCall, Users
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -50,3 +53,21 @@ def get_user_by_id(user_id: str = Depends(token.get_user_id)):
 
 def get_user_by_email(user_email: str):
     return Users.objects(email=user_email)
+
+
+def date_in_dict(_date: datetime.date, dictionary: dict):
+    for key, value in dictionary.items():
+        date = datetime.strptime(key, "%Y-%m-%d").date()
+        if _date == date:
+            return str(key)
+    return None
+
+
+def check_completed_achievements(user: Users):
+    completed_achievements_names = achievements_collection.get_completed_achievements(user)
+    for achievement_name in completed_achievements_names:
+        if achievement_name not in user.achievements:
+            user.achievements.append(achievement_name)
+    user.save()
+
+
