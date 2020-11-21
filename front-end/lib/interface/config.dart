@@ -13,14 +13,11 @@ Color cardColor = Colors.black26;
 
 // Themes
 ThemeData lightTheme = ThemeData(
-  accentColor: primaryColor,
-  primaryColor: primaryColor,
-  shadowColor: shadowColor,
-  cardColor: cardColor,
-  appBarTheme: AppBarTheme(
-    color: primaryColor
-  )
-);
+    accentColor: primaryColor,
+    primaryColor: primaryColor,
+    shadowColor: shadowColor,
+    cardColor: cardColor,
+    appBarTheme: AppBarTheme(color: primaryColor));
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   accentColor: primaryColor,
@@ -60,10 +57,6 @@ TextStyle largeTextStyle = TextStyle(
   fontSize: 40,
 );
 
-
-
-
-
 // AppBars
 
 //App bar for communities which has the specific button
@@ -86,38 +79,42 @@ AppBar buildCommunitiesBar(BuildContext context) {
 //App bar with the app name for the auth pages
 
 AppBar buildUserAuthBar() {
-    return AppBar(
-      elevation: 0,
-      centerTitle: true,
-      automaticallyImplyLeading: false,
-      title: Text(
-        "M(.)(.)VE",
-        style: mediumTextStyle,
-      ),
-    );
-  }
-
-//App bar for single community
-AppBar buildSingleCommunityBar(CommunityListElement com) {
   return AppBar(
     elevation: 0,
     centerTitle: true,
     automaticallyImplyLeading: false,
+    title: Text(
+      "M(.)(.)VE",
+      style: mediumTextStyle,
+    ),
+  );
+}
 
-    leading: Container(
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        image: DecorationImage(
-            fit: BoxFit.cover,
-            image:com.image,)
+//App bar for single community
+AppBar buildSingleCommunityBar(CommunityListElement com) {
+  return AppBar(
+    toolbarHeight: 75,
+    elevation: 0,
+    centerTitle: true,
+    automaticallyImplyLeading: false,
+    leading: Padding(
+      padding: EdgeInsets.fromLTRB(10, 5, 0, 5),
+      child: Container(
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: com.image,
+            )),
+      ),
     ),
-    ),
-  title: Text(
+    title: Text(
       com.name,
       style: mediumTextStyle,
     ),
   );
 }
+
 //App bar Home page
 AppBar buildHomeBar(BuildContext context) {
   return AppBar(
@@ -126,12 +123,8 @@ AppBar buildHomeBar(BuildContext context) {
       leading: IconButton(
         icon: Icon(Icons.menu_open),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CommunitiesPage()
-              )
-          );
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => CommunitiesPage()));
         },
         iconSize: 40,
       ),
@@ -140,20 +133,14 @@ AppBar buildHomeBar(BuildContext context) {
         IconButton(
           icon: Icon(Icons.person),
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ProfilePage()
-                )
-            );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfilePage()));
           },
           iconSize: 40,
         )
-      ]
-  );
+      ]);
 }
 
 //Padding
 double mediumPadding = 20;
 double largePadding = 30;
-

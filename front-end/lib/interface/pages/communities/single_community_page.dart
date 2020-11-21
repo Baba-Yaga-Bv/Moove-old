@@ -6,17 +6,30 @@ import 'components/communities_body.dart';
 import 'components/single_community_body.dart';
 
 class SingleCommunityPage extends StatefulWidget {
+
+  CommunityListElement com;
+  SingleCommunityPage(this.com);
+
   @override
-  State<StatefulWidget> createState() => SingleCommunityPageState();
+  State<StatefulWidget> createState() => SingleCommunityPageState(com);
+
+
 }
 
+
 class SingleCommunityPageState extends State<SingleCommunityPage> {
+
+  CommunityListElement com;
+  SingleCommunityPageState(this.com);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: buildSingleCommunityBar(new CommunityListElement("Placeholder", AssetImage("assets/pictures/placeholder.jpg"))),
-        body: SingleCommunityBody()
+        appBar: buildSingleCommunityBar(com),
+        body: SingleCommunityBody(com)
     );
   }
+
+
 }
 

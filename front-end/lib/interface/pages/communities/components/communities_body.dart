@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../single_community_page.dart';
 import 'CommunityListElement.dart';
 import '../../../config.dart';
 
@@ -31,7 +32,8 @@ class CommunitiesBodyState extends State<CommunitiesBody> {
     return Column(children: [
       // Top container
       Expanded(
-          child: Container(
+          child:
+          Container(
         decoration: BoxDecoration(
             color: Theme.of(context).primaryColor,
             boxShadow: [
@@ -48,12 +50,17 @@ class CommunitiesBodyState extends State<CommunitiesBody> {
             return
 
             //Parrent list element
-
-            Padding(
+            ElevatedButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context)=>SingleCommunityPage(myCommunities[index])
+              ));
+            },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
+                ),
+                 child: Padding(
               padding: EdgeInsets.fromLTRB(30, 50, 0, 0),
               child: Container(
-
-
                 //The row in which the image and name resign
                 child:Row(
                   children: [
@@ -86,11 +93,7 @@ class CommunitiesBodyState extends State<CommunitiesBody> {
 
                 ) ,
               ),
-            );
-
-
-          },
-
+            ));},
           itemCount: myCommunities.length,
         ),
       ))
