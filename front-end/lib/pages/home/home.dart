@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moove/config.dart';
 import 'package:moove/pages/communities/communities.dart';
+import 'package:moove/pages/profile/profile.dart';
 
 import 'components/home_body.dart';
 
@@ -15,6 +16,7 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: buildHomeBar(),
       body: HomeBody(),
+      // Theme switching button
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             themeController.switchTheme();
@@ -27,6 +29,7 @@ class HomePageState extends State<HomePage> {
   AppBar buildHomeBar() {
     return AppBar(
       elevation: 0,
+      // Communities page button
       leading: IconButton(
         icon: Icon(Icons.menu_open),
         onPressed: () {
@@ -39,10 +42,18 @@ class HomePageState extends State<HomePage> {
         },
         iconSize: 40,
       ),
+      // Profile page button
       actions: [
         IconButton(
           icon: Icon(Icons.person),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProfilePage()
+              )
+            );
+          },
           iconSize: 40,
         )
       ]

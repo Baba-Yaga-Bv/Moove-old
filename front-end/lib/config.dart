@@ -2,11 +2,11 @@ library config.global;
 import 'package:flutter/material.dart';
 import 'package:moove/themes/theme_controller.dart';
 
+// Colors
 Color primaryColor = Colors.greenAccent;
 Color shadowColor=Colors.grey;
-Color textColor=Colors.white;
-double textFontSize=36;
-double defaultPadding=50.0; //Padding between the sections in the home screen
+
+// Themes
 ThemeData lightTheme = ThemeData(
   accentColor: primaryColor,
   primaryColor: primaryColor,
@@ -21,4 +21,21 @@ ThemeData darkTheme = ThemeData(
 );
 ThemeController themeController = ThemeController();
 
+// Decorators
 Radius defaultRoundedCorner = Radius.circular(40);
+
+// Icons
+double defaultIconSize = 40;
+
+// Blur
+double defaultBlurRadius = 30;
+
+// Text
+TextStyle mediumTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+  fontSize: 30,
+);
+
+// Padding
+double mediumPadding = 20;

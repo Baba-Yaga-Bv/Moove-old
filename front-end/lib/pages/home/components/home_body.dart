@@ -6,12 +6,14 @@ class HomeBody extends StatelessWidget {
     int currentProgress = 15;
     int totalProgress = 30;
 
+
     return currentProgress.toString() + "/" + totalProgress.toString();
   }
 
   String getStepsToday() {
     int stepsToday = 1000;
     return "Steps today: " + stepsToday.toString();
+
   }
 
   @override
@@ -27,6 +29,7 @@ class HomeBody extends StatelessWidget {
     Size screenSize = MediaQuery.of(context).size;
     return Column(
       children: [
+
         //Top containter
         Container(
             height: screenSize.height * 0.3,
@@ -52,11 +55,7 @@ class HomeBody extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         "Challenge name",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: textColor,
-                          fontSize: 48,
-                        ),
+                        style: mediumTextStyle,
                       ),
                     ]),
 
@@ -80,18 +79,14 @@ class HomeBody extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       getMainStatsText(),
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: textColor,
-                        fontSize: 56,
-                      ),
+                      style: mediumTextStyle,
                     ),
                   ],
                 )
               ],
             )),
 
-        //Expanded(child:
+        // The list bellow child
         Expanded(
             child: ListView.separated(
                 padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
@@ -106,10 +101,7 @@ class HomeBody extends StatelessWidget {
                     child: Center(
                         child: Text(
                       'Entry ${toDisplay[index]}',
-                      style: TextStyle(
-                          color: textColor,
-                          fontSize: textFontSize,
-                          fontWeight: FontWeight.bold),
+                      style: mediumTextStyle,
                     )),
                   );
                 },
