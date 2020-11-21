@@ -1,4 +1,4 @@
-from ..models.models import Membership, Community, Challenge
+from ..models.models import Membership, Challenge
 from fastapi import HTTPException
 
 

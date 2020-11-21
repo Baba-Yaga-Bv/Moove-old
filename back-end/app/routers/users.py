@@ -138,6 +138,7 @@ async def update_steps(userSteps: UserAddSteps, user: Users = Depends(users_coll
 
     user.daily_steps = current_dictionary
     user.save()
+    users_collection.check_completed_achievements(user)
     return prepare_for_return(user)
 
 
