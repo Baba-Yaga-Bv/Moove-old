@@ -12,25 +12,28 @@ class CommunitiesPageState extends State<CommunitiesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildCommunitiesBar(),
+      appBar: buildCommunitiesBar(context),
       body: CommunitiesBody()
     );
   }
 
-  AppBar buildCommunitiesBar() {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      elevation: 0,
-      actions: [
-        IconButton(
-          icon: Icon(Icons.arrow_forward),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          iconSize: defaultIconSize,
-        )
-      ],
-    );
+  // AppBar buildCommunitiesBar() {
+  //   return AppBar(
+  //     automaticallyImplyLeading: false,
+  //     elevation: 0,
+  //
+  //
+  //     actions: [
+  //       IconButton(
+  //         icon: Icon(Icons.arrow_forward),
+  //         onPressed: () {
+  //           Navigator.pop(context);
+  //         },
+  //         iconSize: defaultIconSize,
+  //       )
+  //     ],
+  //   );
+
+
   }
 
-}
