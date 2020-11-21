@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
-import 'package:moove/interface/pages/home/home_page.dart';
+import 'package:moove/interface/pages/user_auth/user_auth_page_sign_in.dart';
 
 void main() {
   runApp(MooveApp());
@@ -28,7 +28,6 @@ class MooveAppState extends State<MooveApp> {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: themeController.currentTheme(),
-        home: HomePage()
-    );
+        home: UserAuthSignIn());
   }
 }
