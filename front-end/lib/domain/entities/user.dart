@@ -14,4 +14,6 @@ class User extends DbEntity {
   String get email => _email;
   List<Community> get communities => _communities;
   int get stepsForToday => _stepsForToday.currentSteps;
+
+  User(this._firstName, this._lastName, this._email);
 }

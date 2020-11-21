@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/home/home_page.dart';
+import 'package:moove/main.dart';
 
 import '../user_auth_page_login.dart';
 
 class UserAuthSignUpBody extends StatelessWidget {
+  TextEditingController _email = TextEditingController();
+  TextEditingController _firstName = TextEditingController();
+  TextEditingController _lastName = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -22,6 +28,7 @@ class UserAuthSignUpBody extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(30, 70, 30, 0),
                     child: TextFormField(
+                      controller: _email,
                       decoration: InputDecoration(
                           icon: Icon(Icons.person),
                           hintText: "Enter your email",
@@ -32,6 +39,7 @@ class UserAuthSignUpBody extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
                     child: TextFormField(
+                      controller: _firstName,
                       decoration: InputDecoration(
                           icon: Icon(Icons.account_box),
                           hintText: "Forename",
@@ -42,6 +50,7 @@ class UserAuthSignUpBody extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
                     child: TextFormField(
+                      controller: _lastName,
                       decoration: InputDecoration(
                           icon: Icon(Icons.account_box),
                           hintText: "Family name",
@@ -52,6 +61,7 @@ class UserAuthSignUpBody extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
                     child: TextFormField(
+                      controller: _password,
                       decoration: InputDecoration(
                           icon: Icon(Icons.vpn_key),
                           hintText: "Enter your password",
@@ -66,10 +76,15 @@ class UserAuthSignUpBody extends StatelessWidget {
                         style: TextButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                          try {
+                            service.registerUser(_email.text.toString(), _firstName.text.toString(), _lastName.text.toString(), _password.text.toString());
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          } catch (exception) {
+
+                          }
                         }),
                   ),
                   //Not this page

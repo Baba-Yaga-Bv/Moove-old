@@ -24,7 +24,7 @@ class UserAuthPageLoginState extends State<UserAuthLogin> {
       centerTitle: true,
       automaticallyImplyLeading: false,
       title: Text(
-        "M(.)(.)VE",
+        "M(.)(.)VE!",
         style: mediumTextStyle,
       ),
     );

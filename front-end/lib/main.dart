@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/user_auth/user_auth_page_sign_in.dart';
+import 'package:moove/service/service.dart';
+
+Service service = Service();
 
 void main() {
   runApp(MooveApp());
@@ -18,6 +21,7 @@ class MooveAppState extends State<MooveApp> {
     themeController.addListener(() {
       setState(() {});
     });
+
   }
 
   @override
