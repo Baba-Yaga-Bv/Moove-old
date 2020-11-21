@@ -1,27 +1,23 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:moove/interface/pages/communities/communities_page.dart';
-import 'package:moove/interface/pages/profile/profile_page.dart';
+
 import '../../config.dart';
 import 'components/user_login_body.dart';
-import 'components/user_sign_in_body.dart';
 
-class UserAuth extends StatefulWidget {
+class UserAuthLogin extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => UserAuthPageState();
+  State<StatefulWidget> createState() => UserAuthPageLoginState();
 }
 
-class UserAuthPageState extends State<UserAuth> {
+class UserAuthPageLoginState extends State<UserAuthLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildUserAuthBar(),
-      body: UserAuthSignInBody(),
+      body: UserAuthLoginBody(),
       // Theme switching button
-
     );
   }
+
   AppBar buildUserAuthBar() {
     return AppBar(
       elevation: 0,
@@ -31,8 +27,6 @@ class UserAuthPageState extends State<UserAuth> {
         "M(.)(.)VE",
         style: mediumTextStyle,
       ),
-
-
     );
   }
 }

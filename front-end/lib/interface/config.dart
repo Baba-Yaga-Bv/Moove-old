@@ -5,23 +5,18 @@ import 'package:moove/interface/themes/theme_controller.dart';
 
 // Colors
 Color primaryColor = Colors.greenAccent;
-Color shadowColor=Colors.grey;
-Color textColor=Colors.black;
+Color shadowColor = Colors.grey;
+Color textColor = Colors.black;
 
 // Themes
 ThemeData lightTheme = ThemeData(
-  accentColor: primaryColor,
-  primaryColor: primaryColor,
-  shadowColor: shadowColor,
-
-  appBarTheme: AppBarTheme(
-    color: primaryColor
-  )
-);
+    accentColor: primaryColor,
+    primaryColor: primaryColor,
+    shadowColor: shadowColor,
+    appBarTheme: AppBarTheme(color: primaryColor));
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   accentColor: primaryColor,
-
 );
 ThemeController themeController = ThemeController();
 

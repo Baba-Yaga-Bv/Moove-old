@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/home/home_page.dart';
 
-import '../user_auth_page_sign_in.dart';
+import '../user_auth_page_login.dart';
 
-class UserAuthLoginBody extends StatelessWidget {
+class UserAuthSignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -18,6 +18,7 @@ class UserAuthLoginBody extends StatelessWidget {
               ),
               child: Column(
                 children: [
+                  //Email
                   Padding(
                     padding: EdgeInsets.fromLTRB(30, 70, 30, 0),
                     child: TextFormField(
@@ -27,8 +28,29 @@ class UserAuthLoginBody extends StatelessWidget {
                           labelText: "Email *"),
                     ),
                   ),
+                  //First name
                   Padding(
-                    padding: EdgeInsets.fromLTRB(30, 70, 30, 0),
+                    padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.account_box),
+                          hintText: "Forename",
+                          labelText: "First name *"),
+                    ),
+                  ),
+                  //Last name
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          icon: Icon(Icons.account_box),
+                          hintText: "Family name",
+                          labelText: "Last name *"),
+                    ),
+                  ),
+                  //Password
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(30, 10, 30, 0),
                     child: TextFormField(
                       decoration: InputDecoration(
                           icon: Icon(Icons.vpn_key),
@@ -36,10 +58,11 @@ class UserAuthLoginBody extends StatelessWidget {
                           labelText: "Password *"),
                     ),
                   ),
+                  //Sign in button
                   Padding(
-                    padding: EdgeInsets.fromLTRB(30, 70, 30, 0),
+                    padding: EdgeInsets.fromLTRB(30, 50, 30, 0),
                     child: TextButton(
-                        child: Text("Login", style: mediumTextStyle),
+                        child: Text("Sign up", style: mediumTextStyle),
                         style: TextButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor),
                         onPressed: () {
@@ -49,23 +72,25 @@ class UserAuthLoginBody extends StatelessWidget {
                                   builder: (context) => HomePage()));
                         }),
                   ),
+                  //Not this page
                   Padding(
-                      padding: EdgeInsets.fromLTRB(30, 130, 30, 0),
+                      padding: EdgeInsets.fromLTRB(30, 100, 30, 0),
                       child: Text(
-                        "Don't have an account?",
+                        "Already have an account?",
                         style: smallTextStyle,
                       )),
+                  //Login
                   Padding(
                     padding: EdgeInsets.fromLTRB(30, 20, 30, 0),
                     child: TextButton(
-                        child: Text("Sign up", style: mediumTextStyle),
+                        child: Text("Login", style: mediumTextStyle),
                         style: TextButton.styleFrom(
                             backgroundColor: Theme.of(context).primaryColor),
                         onPressed: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => UserAuthSignIn()));
+                                  builder: (context) => UserAuthLogin()));
                         }),
                   )
                 ],
