@@ -43,7 +43,6 @@ async def register_user(user: UserRegisterCall =
 @router.post("/login")
 async def login_user(user=Depends(users_collection.login_user)):
     access_token = token.create_access_token(user.id)
-    result = json.loads(user.to_js)
     return {"access_token": access_token,
             "token_type": "bearer",
             "user_profile": prepare_for_return(user)}
@@ -71,6 +70,8 @@ async def upload_user_photo(photo: UploadFile = File(...), user: Users = Depends
 @router.get("/me/photo")
 async def user_photo(user: Users = Depends(users_collection.get_user_by_id)):
     photo = [user.photo.read()]
+    if photo == [None]:
+        raise HTTPException(status_code=400, detail="User has no photo")
     aux = user.photo.read()
     while aux:
         photo.append(aux)
@@ -151,3 +152,9 @@ async def get_steps_at_date(date: str, user: Users = Depends(users_collection.ge
         return {date: current_dictionary[key]}
     else:
         raise HTTPException(status_code=400, detail="No data at this date")
+
+
+@router.get("/me/achievements")
+async def get_user_achievements(user: Users = Depends(users_collection.get_user_by_id)):
+    return {"achievements": user.achievements}
+
