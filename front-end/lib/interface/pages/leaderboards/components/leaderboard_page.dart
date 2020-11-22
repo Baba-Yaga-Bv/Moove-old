@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moove/interface/config.dart';
 import 'package:moove/interface/pages/communities/components/CommunityListElement.dart';
+import 'package:moove/service/service.dart';
+
 
 class LeaderboardPage extends StatefulWidget{
 
@@ -36,7 +38,7 @@ class LeaderboardPageState extends State<LeaderboardPage>
               '${leaderboard[index].score}'
             )
           ],
-        )
+        );
       },
 
       separatorBuilder: (BuildContext context, int index) => const Divider(),

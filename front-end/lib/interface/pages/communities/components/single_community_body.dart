@@ -15,7 +15,7 @@ class SingleCommunityBody extends StatefulWidget{
   SingleCommunityBody(this.com);
 
   @override
-  State<StatefulWidget> createState() => SingleCommunityBodyState();
+  State<StatefulWidget> createState() => SingleCommunityBodyState(com);
 }
 
 class SingleCommunityBodyState extends State<SingleCommunityBody>{
