@@ -78,7 +78,7 @@ class Service {
 
   core.Future<AccessToken> autoLoginUser() async {
     HttpClientRequest request =
-        await client.getUrl(core.Uri.parse(url + "/users/login"));
+        await client.getUrl(core.Uri.parse(url + "/users/token"));
     request.headers.set('content-type', 'application/json');
     request.headers.set('Authorization', 'Bearer ' + token.get());
 
