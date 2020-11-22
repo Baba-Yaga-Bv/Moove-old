@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'dart:core' as core;
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:moove/domain/access_token.dart';
 import 'package:moove/domain/entities/challenges/challenge.dart';
 import 'package:moove/domain/entities/user.dart';
 import 'package:moove/domain/id.dart';
-import 'package:http/http.dart' as http;
 
 class Service {
   core.String url;
@@ -14,7 +14,7 @@ class Service {
   AccessToken token;
 
   Service() {
-    url = "https://mooveapi.switzerlandnorth.cloudapp.azure.com:8000";
+    url = "http://mooveapi.switzerlandnorth.cloudapp.azure.com:8000";
     token = AccessToken("");
     client = new HttpClient();
     client.badCertificateCallback =
@@ -96,4 +96,12 @@ class Service {
   void startChallenge(Id id) async {}
 
   core.Future<core.List<Challenge>> getChallenges() {}
+
+  Image getPicture(core.String url) {
+    return Image.network(
+      this.url + url,
+      scale: 2,
+      headers: {"Authorization": "Bearer " + token.value},
+    );
+  }
 }
