@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:moove/domain/id.dart';
 
 class CommunityListElement {
   String name;
   AssetImage image;
-  int id;
+  Id id;
 
   CommunityListElement(String name, AssetImage image) {
     this.name = name;
