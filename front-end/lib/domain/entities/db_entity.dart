@@ -1,9 +1,11 @@
+import 'package:moove/domain/id.dart';
+
 class DbEntity {
-  String _id;
+  Id _id;
 
-  String get id => _id;
+  Id get id => _id;
 
-  set id(String value) {
+  set id(Id value) {
     _id = value;
   }
 }
