@@ -1,36 +1,52 @@
 import 'dart:convert';
 import 'dart:core' as core;
+import 'dart:io';
 
 import 'package:moove/domain/access_token.dart';
 import 'package:moove/domain/entities/challenges/challenge.dart';
-import 'package:moove/domain/entities/community.dart';
 import 'package:moove/domain/entities/user.dart';
-import 'package:moove/service/repos/repo.dart';
+import 'package:moove/domain/id.dart';
 import 'package:http/http.dart' as http;
 
 class Service {
-  core.String url = "http://mooveapi.switzerlandnorth.cloudapp.azure.com:8000";
-  AccessToken token = AccessToken("");
+  core.String url;
+  HttpClient client;
+  AccessToken token;
 
-  core.Future<AccessToken> registerUser(email, firstName, lastName, password) async {
-    final http.Response response = await http.post(
-      url + "/users/register",
-      headers: <core.String, core.String>{
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: jsonEncode(<core.String, core.String>{
-        "email": email.toString(),
-        "first_name": firstName.toString(),
-        "last_name": lastName.toString(),
-        "password": password.toString()
-      }),
-    );
+  Service() {
+    url = "https://mooveapi.switzerlandnorth.cloudapp.azure.com:8000";
+    token = AccessToken("");
+    client = new HttpClient();
+    client.badCertificateCallback =
+        ((X509Certificate cert, core.String host, core.int port) => true);
+  }
+
+  core.Future<AccessToken> registerUser(
+      email, firstName, lastName, password) async {
+    core.Map data = {
+      "email": email.toString(),
+      "first_name": firstName.toString(),
+      "last_name": lastName.toString(),
+      "password": password.toString()
+    };
+
+    HttpClientRequest request =
+        await client.postUrl(core.Uri.parse(url + "/users/register"));
+    request.headers.set('content-type', 'application/json');
+    request.add(utf8.encode(json.encode(data)));
+
+    HttpClientResponse response = await request.close();
 
     if (response.statusCode == 200) {
-      core.Map<core.String, core.dynamic> json = jsonDecode(response.body);
-      token.set(json['access_token'].toString());
+      response.transform(utf8.decoder).listen((event) {
+        core.print(event);
+        core.Map<core.String, core.dynamic> json = jsonDecode(event);
+        token.set(json['access_token'].toString());
+      });
+      core.print(token.get());
       return token;
     } else {
+      core.print(token.get());
       throw core.Exception("Failed to register user");
     }
   }
@@ -59,4 +75,10 @@ class Service {
   core.Future<AccessToken> autoLoginUser() async {
     throw core.Exception("Failed to auto login");
   }
+
+  core.Future<core.List<User>> getLeaderboard(Id id) async {}
+
+  void startChallenge(Id id) async {}
+
+  core.Future<core.List<Challenge>> getChallenges() {}
 }
