@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../config.dart';
 import 'components/profile_body.dart';
+import 'settings/settings_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -29,15 +30,15 @@ class ProfilePageState extends State<ProfilePage> {
         },
         iconSize: defaultIconSize,
       ),
-      title: Text(
-        "Profile",
-        style: smallTextStyle,
-        textAlign: TextAlign.center
-      ),
+      title:
+          Text("Profile", style: smallTextStyle, textAlign: TextAlign.center),
       actions: [
         IconButton(
           icon: Icon(Icons.settings),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SettingsPage()));
+          },
           iconSize: defaultIconSize,
         )
       ],
