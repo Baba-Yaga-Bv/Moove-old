@@ -16,13 +16,6 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: buildHomeBar(context),
       body: HomeBody(),
-      // Theme switching button
-      floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {
-            themeController.switchTheme();
-          },
-          label: Text("Switch theme"),
-          icon: Icon(Icons.brightness_5)),
     );
   }
 
