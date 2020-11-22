@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:moove/domain/entities/challenges/challenge.dart';
 import 'package:moove/domain/entities/challenges/steps_challenge.dart';
+import 'package:moove/interface/pages/leaderboards/leaderboard_page.dart';
 import 'package:moove/main.dart';
 import 'CommunityListElement.dart';
 import '../../../config.dart';
 import 'communities_body.dart';
-import 'package:moove/interface/pages/leaderboards/components/leaderboard_page.dart';
+import 'package:moove/interface/pages/leaderboards/leaderboard_page.dart';
 
 class SingleCommunityBody extends StatefulWidget {
   CommunityListElement com;
@@ -19,11 +20,12 @@ class SingleCommunityBody extends StatefulWidget {
 class SingleCommunityBodyState extends State<SingleCommunityBody> {
   CommunityListElement com;
   Challenge challenge;
-  List<Challenge> challenges;
+  List<Challenge> challenges = List<Challenge>();
 
   SingleCommunityBodyState(this.com) {
-    service.getChallenges().then((value) {
+    service.getChallenges(com.id).then((value) {
       challenges = value;
+      setState(() {});
     });
   }
 
@@ -40,23 +42,31 @@ class SingleCommunityBodyState extends State<SingleCommunityBody> {
           children: [
             //Main challenge of the community
             Container(
-              height: screenSize.height * 0.3,
-              decoration: BoxDecoration(
-                  border: Border.all(
-                      color: Theme.of(context).accentColor, width: 5),
-                  borderRadius: BorderRadius.all(Radius.circular(35))),
-              child: Row(
-                children: [
-                  Text(
-                    challenges[0].name,
-                    style: mediumTextStyle,
-                  ),
-                  ElevatedButton(
-                      onPressed: () => service.startChallenge(challenges[0].id),
-                      child: null)
-                ],
-              ),
-            ),
+                height: screenSize.height * 0.3,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Theme.of(context).accentColor, width: 5),
+                    borderRadius: BorderRadius.all(Radius.circular(35))),
+                child: (challenges.length > 0)
+                    ? Row(
+                        children: [
+                          Text(
+                            challenges[0].name,
+                            style: mediumTextStyle,
+                          ),
+                          ElevatedButton(
+                              onPressed: () =>
+                                  service.startChallenge(challenges[0].id),
+                              child: null)
+                        ],
+                      )
+                    : Row(
+                        children: [
+                          Container(
+                            height: screenSize.height * 0.3,
+                          )
+                        ],
+                      )),
             //Leaderboard
             Padding(
               padding: EdgeInsets.fromLTRB(0, 50, 0, 50),

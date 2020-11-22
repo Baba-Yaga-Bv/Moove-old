@@ -1,10 +1,11 @@
-import 'challenges/challenge.dart';
 import 'db_entity.dart';
 
-class Community extends DbEntity{
+class Community extends DbEntity {
   String _name;
-  Challenge _currentChallenge;
+  bool _isJoined;
+
+  Community(this._name, this._isJoined);
 
   String get name => _name;
-  Challenge get currentChallenge => _currentChallenge;
+  bool get isJoined => _isJoined;
 }
