@@ -46,26 +46,30 @@ class Service {
       core.print(token.get());
       return token;
     } else {
-      core.print(token.get());
       throw core.Exception("Failed to register user");
     }
   }
 
   core.Future<AccessToken> loginUser(email, password) async {
-    final http.Response response = await http.post(
-      url + "/users/login",
-      headers: <core.String, core.String>{
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: jsonEncode(<core.String, core.String>{
-        "email": email.toString(),
-        "password": password.toString()
-      }),
-    );
+    core.Map data = {
+      "email": email.toString(),
+      "password": password.toString()
+    };
+
+    HttpClientRequest request =
+        await client.postUrl(core.Uri.parse(url + "/users/login"));
+    request.headers.set('content-type', 'application/json');
+    request.add(utf8.encode(json.encode(data)));
+
+    HttpClientResponse response = await request.close();
 
     if (response.statusCode == 200) {
-      core.Map<core.String, core.dynamic> json = jsonDecode(response.body);
-      token.set(json['access_token'].toString());
+      response.transform(utf8.decoder).listen((event) {
+        core.print(event);
+        core.Map<core.String, core.dynamic> json = jsonDecode(event);
+        token.set(json['access_token'].toString());
+      });
+      core.print(token.get());
       return token;
     } else {
       throw core.Exception("Failed to login user");
