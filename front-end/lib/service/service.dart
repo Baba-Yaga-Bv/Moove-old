@@ -77,7 +77,18 @@ class Service {
   }
 
   core.Future<AccessToken> autoLoginUser() async {
-    throw core.Exception("Failed to auto login");
+    HttpClientRequest request =
+        await client.postUrl(core.Uri.parse(url + "/users/login"));
+    request.headers.set('content-type', 'application/json');
+    request.headers.set('Authorization', 'Bearer ' + token.get());
+
+    HttpClientResponse response = await request.close();
+
+    if (response.statusCode == 200) {
+      return token;
+    } else {
+      throw core.Exception("Failed to auto login user");
+    }
   }
 
   core.Future<core.List<User>> getLeaderboard(Id id) async {}
